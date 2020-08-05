@@ -1,0 +1,24 @@
+<html>
+  <head></head>
+  <body id="webviewTarget">
+  </body>
+  <footer>
+    <script
+      src="https://unpkg.com/blip-chat-widget@1.6.*"
+      type="text/javascript"
+    ></script>
+    <script>
+      (function () {
+        window.onload = function () {
+          new BlipChat()
+            .withAppKey(
+              "d2hhdHNhcHBib3Q2OmQ2MGE0YWZmLTE4YWEtNDYxZi1hMDRmLWRlZmYxNDczZDAzYg=="
+            )
+            .withButton({ color: "#2CC3D5", icon: "" })
+            .withTarget('webviewTarget')
+            .build();
+        };
+      })();
+    </script>
+  </footer>
+</html>
