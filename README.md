@@ -1,21 +1,48 @@
-# blip-chat-flutter-example
+# Blip Chat Flutter App example
+> An example app built with Flutter using the BLiP Chat
 
-A new Flutter project.
+Meet [BLiP](http://blip.ai)!
 
-## Getting Started
+## How to run
 
-This project is a starting point for a Flutter application.
+#### Install all the dependencies:
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Execute the project:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Press F5 on VSCode, and select (`Dart/Flutter`)
 
-Necessary to add on PList:
+
+## Built With
+This project was bootstrapped with [Flutter](https://flutter.dev/).
+
+## Using BLiP Chat with Flutter
+
+Install the library (`flutter_webview_plugin`) and use it to render a webview with the BLiP Chat URL.
+
+```dart
+final Set<JavascriptChannel> jsChannels = [
+  JavascriptChannel(
+      name: 'Print',
+      onMessageReceived: (JavascriptMessage message) {
+        print(message.message);
+      }),
+].toSet();
+
+return WebviewScaffold(
+    url: "https://chat.blip.ai/?appKey=YOUR-APP-KEY",
+    javascriptChannels: jsChannels,
+    mediaPlaybackRequiresUserGesture: false,
+    appBar: AppBar(
+        title: const Text('BLiP Chat'),
+    ),
+)
+```
+
+It is ecessary to add on PList:
 
 ```xml
 <key>NSAppTransportSecurity</key>
@@ -26,3 +53,20 @@ Necessary to add on PList:
     <true/>
 </dict>
 ```
+
+## Troubleshotting
+
+* Why don't we use the library (`webview_flutter`)?
+  * With static HTML: The chat loads but the bot breaks on loading screen.
+  * With BLiP Chat URL: The chat and bot loads, but it is not possible to type the message.
+  
+* Using a static HTML: The bot breaks on loading screen.
+
+
+## Contributing
+
+1. Fork it (<https://github.com/luisrondow/blip-chat-react-native-example>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
